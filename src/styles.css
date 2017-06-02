@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #f1f4f9;
+  font-size: 12px;
+}
+.wrap-table {
+  border-radius: 4px;
+  border: 1px solid #eceeef;
+  /*border: 1px solid #c7d3dc;*/
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+table.custom-table {
+  background-color: #FFF;
+  margin: 0;
+}
+table.custom-table thead th {
+  background-color: #f8fafc;
+  border-bottom: none;
+}
+
+.table-hover tbody tr:hover {
+  outline: 1px solid #78caf3;
+  outline-offset: -1px;
+  background-color: #d4eafa;
+}
+.table-hover tbody tr:hover .custom-check {
+  border-color: #78caf3;
+}
+.custom-check {
+  display: inline-block;
+  border: 1px solid #eceeef;
+  border-radius: 2px;
+  margin: 0;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.3em;
+  text-align: center;
+  vertical-align: inherit;
+  background-color: #FFF;
+  cursor: pointer;
+  position: relative;
+}
+.custom-check .badge {
+  position: absolute;
+  left: 100%;
+  bottom: 100%;
+}
+.custom-check input[type="checkbox"]:checked + i.fa:before {
+  content: "\f00c";
+  color: #2d5b79;
+}
+.custom-check input[type="checkbox"] {
+  display: none;
+}
+.topbar {
+  background-color: #2687e9;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+label .fa.fa-asterisk {
+  font-size: 7px;
+  vertical-align: super;
+}

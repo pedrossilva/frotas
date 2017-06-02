@@ -1,0 +1,60 @@
+<div class="form-group">
+  <div class="row">
+    <div class="col-sm-6">
+      <button *ngIf="modal" class="btn btn-success" (click)="modal?.show()">Novo carro</button>
+      <button class="btn btn-primary" *ngIf="selecteds.length && cadastroComponent" [hidden]="selecteds.length > 1" (click)="edit()">
+        Editar
+      </button>
+      <button class="btn btn-danger" [hidden]="!selecteds.length" (click)="remove()">
+        Remover
+        <span class="badge badge-pill badge-danger">{{ selecteds.length }}</span>
+      </button>
+    </div>
+    <div class="col-sm-6">
+
+    </div>
+  </div>
+</div>
+
+<div class="wrap-table">
+  <table class="table table-hover custom-table">
+    <thead class="thead-default">
+    <tr>
+      <th>
+        <label class="custom-check">
+          <input type="checkbox" [checked]="checkedAll" (change)="checkAll($event)">
+          <i class="fa"></i>
+        </label>
+      </th>
+      <th>Placa</th>
+      <th>Modelo</th>
+      <th>Marca</th>
+      <th>Foto</th>
+      <th>Combustivel</th>
+      <th>Valor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let carro of frota | slice:((currentPage-1)*maxSize):((currentPage-1)*maxSize+maxSize); let i = index">
+      <td>
+        <label class="custom-check">
+          <input type="checkbox" [formControl]="control(carro.placa)">
+          <i class="fa"></i>
+        </label>
+      </td>
+      <td class="text-uppercase">{{ carro.placa }}</td>
+      <td>{{ carro.modelo }}</td>
+      <td>{{ carro.marca }}</td>
+      <td>
+        <a *ngIf="carro.imagem" [attr.href]="carro.imagem" target="_blank">imagem</a>
+        <span *ngIf="!carro.imagem">Sem foto</span>
+      </td>
+      <td>{{ carro.combustivel }}</td>
+      <td>{{ carro.valor }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<app-paginacao [totalItems]="totalItems" [(ngModel)]="currentPage" [maxSize]="maxSize" [boundaryLinks]="true"
+               previous-text="&lsaquo;" next-text="&rsaquo;"
+               first-text="First" last-text="Last"></app-paginacao>

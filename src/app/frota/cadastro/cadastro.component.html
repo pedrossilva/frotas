@@ -1,0 +1,64 @@
+<form class="form" (ngSubmit)="salvar()" [class.submitted]="submitted" novalidate>
+  <div class="alert alert-danger" [hidden]="form.valid || !submitted">
+    <ul>
+      <li [hidden]="form.get('marca')?.valid"><small>Preencha o campo "Marca"</small></li>
+      <li [hidden]="form.get('modelo')?.valid"><small>preencha o campo "Modelo"</small></li>
+      <li [hidden]="form.get('combustivel')?.valid"><small>preencha o campo "Combustível"</small></li>
+      <li [hidden]="form.get('placa')?.valid"><small>preencha o campo "Placa" no padrão AAA-0000</small></li>
+      <li [hidden]="form.get('valor')?.valid"><small>preencha o campo "Valor"</small></li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="marca">Marca <i class="fa fa-asterisk text-danger"></i></label>
+        <input type="text" id="marca" [formControl]="form.get('marca')" class="form-control">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="modelo">Modelo <i class="fa fa-asterisk text-danger"></i></label>
+        <input type="text" id="modelo" [formControl]="form.get('modelo')" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="combustivel">Combustível <i class="fa fa-asterisk text-danger"></i></label>
+        <select [formControl]="form.get('combustivel')" id="combustivel" class="form-control">
+          <option value="Flex">Flex</option>
+          <option value="Gasolina">Gasolina</option>
+          <option value="Alcool">Alcool</option>
+          <option value="Diesel">Diesel</option>
+          <option value="GNV">Gás Natural (GNV)</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="placa">Placa <i class="fa fa-asterisk text-danger"></i></label>
+        <input [formControl]="form.get('placa')" type="text" id="placa" class="form-control text-uppercase"
+                mask="SSS-0000">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="valor">Valor <i class="fa fa-asterisk text-danger"></i></label>
+        <input [formControl]="form.get('valor')" type="text" id="valor" class="form-control"
+               currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" maxlength="17">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="foto">Foto</label>
+        <input type="file" (change)="setImage($event)" id="foto" class="form-control">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <button class="btn btn-default" type="button" (click)="cancelar()">cancelar</button>
+    <button class="btn btn-primary" type="submit">Salvar</button>
+  </div>
+</form>

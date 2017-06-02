@@ -1,3 +1,9 @@
-<h1>
-  {{title}}
-</h1>
+<ng2-toasty></ng2-toasty>
+<app-menu></app-menu>
+<div class="container">
+  <app-lista-frota #listaFrota [modal]="modal" [cadastro]="cadastro"></app-lista-frota>
+</div>
+
+<app-modal #modal [sizeBS]="'lg'" [title]="'Novo carro'">
+  <app-cadastro #cadastro class="body" [modal]="modal" (onUpdate)="listaFrota?.atualizaFrota()"></app-cadastro>
+</app-modal>
